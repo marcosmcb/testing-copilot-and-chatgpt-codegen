@@ -45,6 +45,10 @@ components:
       properties:
         symbol:
           type: string
+          # add a regex to validate the symbol
+          pattern: '^[A-Z]{1,5}$'
+          
+
         name:
           type: string
         industry:

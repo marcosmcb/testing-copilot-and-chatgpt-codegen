@@ -1,0 +1,25 @@
+# dependencies
+/node_modules
+
+# build output
+/dist
+
+# IDE/Editor specific files
+.idea/
+.vscode/
+
+# Logs and databases
+*.log
+*.sqlite
+
+# Typescript specific
+*.tsbuildinfo
+*.ts.old
+*.tsx.old
+
+# Temporary files
+.DS_Store
+*.swp
+
+# Environment Variables
+.env

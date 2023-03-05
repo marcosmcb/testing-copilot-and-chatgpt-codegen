@@ -1,0 +1,90 @@
+# create an api spec for the stock screener API
+openapi: 3.0.0
+info:
+  title: Stock Screener API
+  version: 1.0.0
+  description: |
+    This is a simple API for the stock screener application.
+    It allows users to search for stocks by name, symbol, or industry.
+
+servers:
+  - url: http://localhost:8080
+    description: Local server
+
+paths:
+  /stocks-info:
+    get:
+      summary: Search for stocks
+      description: Search for stocks by ticker symbol
+      operationId: searchStocks
+      parameters:
+        - name: ticker
+          in: query
+          description: The ticker of the stock
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The properties of the stock
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stock'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  # create the stock schema
+components:
+  schemas:
+    Stock:
+      type: object
+      properties:
+        symbol:
+          type: string
+        name:
+          type: string
+        industry:
+          type: string
+        price:
+          type: number
+          format: float
+        change:
+          type: number
+          format: float
+        changePercent:
+          type: number
+          format: float
+        volume:
+          type: number
+          format: integer
+        avgTotalVolume:
+          type: number
+          format: integer
+        marketCap:
+          type: number
+          format: integer
+        peRatio:
+          type: number
+          format: float
+        week52High:
+          type: number
+          format: float
+        week52Low:
+          type: number
+          format: float
+        ytdChange:
+          type: number
+          format: float
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+
